@@ -2,8 +2,8 @@ package com.supa.spring.supaspring.controller
 
 import com.supa.spring.supaspring.controller.dto.ProductDto
 import com.supa.spring.supaspring.service.ProductService
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Controller
+import org.springframework.http.HttpStatusCode
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -20,14 +20,14 @@ class ProductController(
 ) {
 
     @GetMapping
-    fun getProducts() {
-        productService.getProducts()
+    fun getProducts(): ResponseEntity<List<ProductDto>> {
+        val result = productService.getProducts()
+        return ResponseEntity<List<ProductDto>>(result, HttpStatusCode.valueOf(200))
     }
 
     @PostMapping("/{id}")
     fun createProduct(@PathVariable id: Int) {
         productService.createProduct(id)
-
     }
 
     @PutMapping("/{id}")
