@@ -1,14 +1,15 @@
 package com.supa.spring.supaspring.controller.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import java.util.UUID
 
 data class ProductDto(
-    @JsonProperty("id")
-    var id: String,
+    @JsonProperty("id", required = false)
+    val id: String = UUID.randomUUID().toString(),
     @JsonProperty("name")
-    var name: String,
+    val name: String,
     @JsonProperty("price")
-    var price: Long,
+    val price: Long,
     @JsonProperty("image", required = false)
-    var image: String,
+    val image: String,
 )
