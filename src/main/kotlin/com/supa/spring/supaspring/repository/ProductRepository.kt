@@ -38,10 +38,12 @@ class ProductRepository constructor
     }
 
     fun createProduct(product: ProductDto): ProductDto {
-        runBlocking {
-            postgrest["products"].insert(product)
+        val result = runBlocking {
+            postgrest["products"].insert(product) {
+                select()
+            }
         }
-        return product
+        return result.decodeSingle()
     }
 
     fun updateProduct(): ProductDto {
@@ -52,7 +54,14 @@ class ProductRepository constructor
         )
     }
 
-    fun deleteProduct(id: Int): Boolean {
+    fun deleteProduct(id: String): Boolean {
+        runBlocking {
+            postgrest["products"].delete {
+                filter {
+                    eq("id", id)
+                }
+            }
+        }
         return true
     }
 }
