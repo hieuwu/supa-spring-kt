@@ -7,9 +7,7 @@ import io.github.jan.supabase.gotrue.Auth
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.serializer.JacksonSerializer
-import io.ktor.util.logging.*
-import kotlinx.coroutines.*
-import org.slf4j.LoggerFactory
+import kotlinx.coroutines.runBlocking
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -23,9 +21,7 @@ class ProductRepository constructor
         install(Auth)
         install(Postgrest)
         defaultSerializer = JacksonSerializer()
-    },
-    val logger: Logger = LoggerFactory.getLogger(ProductRepository::class.java),
-    val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO),
+    }
 ) {
 
     val postgrest: Postgrest = supabase.postgrest
@@ -46,12 +42,19 @@ class ProductRepository constructor
         return result.decodeSingle()
     }
 
-    fun updateProduct(): ProductDto {
-        return ProductDto(
-            id = "1",
-            name = "Product namne",
-            price = 23, ""
-        )
+    fun updateProduct(id: String, name: String, price: Long): ProductDto {
+        val result = runBlocking {
+            postgrest["products"].update({
+                set("name", name)
+                set("price", price)
+            }) {
+                filter {
+                    eq("id", id)
+                }
+                select()
+            }
+        }
+        return result.decodeSingle()
     }
 
     fun deleteProduct(id: String): Boolean {
