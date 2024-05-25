@@ -34,12 +34,13 @@ class ProductController(
     }
 
     @PutMapping("/{id}")
-    fun updateProduct(@PathVariable id: Int, @RequestBody product: ProductDto) {
-        productService.updateProduct()
+    fun updateProduct(@PathVariable id: String, @RequestBody product: ProductDto) {
+        productService.updateProduct(id, product.name, product.price)
     }
 
     @DeleteMapping("/{id}")
-    fun deleteProduct(@PathVariable id: Int) {
+    fun deleteProduct(@PathVariable id: String): ResponseEntity<Unit> {
         productService.deleteProduct(id)
+        return ResponseEntity<Unit>(HttpStatusCode.valueOf(200))
     }
 }
