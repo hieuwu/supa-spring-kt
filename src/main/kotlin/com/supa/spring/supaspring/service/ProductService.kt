@@ -17,11 +17,11 @@ class ProductService(
         return productRepository.createProduct(product)
     }
 
-    fun updateProduct() {
-
+    fun updateProduct(id: String, name: String, price: Long) {
+        productRepository.updateProduct(id, name, price)
     }
 
-    fun deleteProduct(id: Int) {
-
+    fun deleteProduct(id: String) {
+        productRepository.deleteProduct(id)
     }
 }
