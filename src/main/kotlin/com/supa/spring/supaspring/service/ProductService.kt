@@ -13,8 +13,8 @@ class ProductService(
         return productRepository.getProducts()
     }
 
-    fun createProduct(id: Int) {
-
+    fun createProduct(product: ProductDto): ProductDto {
+        return productRepository.createProduct(product)
     }
 
     fun updateProduct() {
