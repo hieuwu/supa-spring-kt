@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 data class ProductDto(
     @JsonProperty("id")
-    val id: Long,
+    var id: String,
     @JsonProperty("name")
-    val name: String,
+    var name: String,
     @JsonProperty("price")
-    val price: Long,
+    var price: Long,
+    @JsonProperty("image", required = false)
+    var image: String,
 )
