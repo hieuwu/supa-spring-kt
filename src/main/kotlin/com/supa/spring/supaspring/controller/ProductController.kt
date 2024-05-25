@@ -25,9 +25,12 @@ class ProductController(
         return ResponseEntity<List<ProductDto>>(result, HttpStatusCode.valueOf(200))
     }
 
-    @PostMapping("/{id}")
-    fun createProduct(@PathVariable id: Int) {
-        productService.createProduct(id)
+    @PostMapping
+    fun createProduct(
+        @RequestBody product: ProductDto
+    ): ResponseEntity<ProductDto> {
+        val result = productService.createProduct(product)
+        return ResponseEntity<ProductDto>(result, HttpStatusCode.valueOf(200))
     }
 
     @PutMapping("/{id}")
