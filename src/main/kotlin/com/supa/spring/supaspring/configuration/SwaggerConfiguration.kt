@@ -22,16 +22,16 @@ class SwaggerConfiguration {
 
     @Bean
     fun customOpenAPI(): OpenAPI {
-        val contact = Contact()
-        contact.email = "hendisantika@yahoo.co.id"
-        contact.name = "HENDI SANTIKA"
-        contact.url = "https://www.s.id/hendisantika"
+        val contact = Contact().apply {
+            name = "Hieu Vu"
+            url = "https://github.com/hieuwu"
+        }
         return OpenAPI()
             .info(
                 Info()
-                    .title("Microservice Base Service Application API")
-                    .version("appVersion")
-                    .description("appDescription")
+                    .title("Spring Boot backend with RESTful APIs, session management via Supabase")
+                    .version("1.0")
+                    .description("Spring Boot Kotlin, built with supabase-kt library")
                     .termsOfService("http://swagger.io/terms/")
                     .license(License().name("Apache 2.0").url("http://springdoc.org"))
                     .contact(contact)
