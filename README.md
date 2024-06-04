@@ -3,8 +3,13 @@
  [![In-progress](https://img.shields.io/badge/In-progress-%23FFac45.svg?&style=for-the-badge&logo=java&logoColor=white&color=yellow)](https://github.com/)
 
 Spring Boot backend with RESTful APIs, session management via Supabase
+![Supa Spring Kt](https://github.com/hieuwu/supa-spring-kt/assets/43868345/c943556e-ed94-40d6-bb42-9e409d40787a)
 
 ## ⭐️ About
+This project demonstrate how to integrate Supabase to a RESful service built with Spring Boot. This backend plays as a middleware to handle requests from multiple clients via RESTful API then interact with Supabase. The common use case is using this service to public APIs to multiple clients so that each client does not have to interact with Supabase via specific SDK.
+
+> [!TIP]
+> If you want to see the more about Supabase Kotlin Multiplatform samples, check out the [supabase-kt](https://github.com/supabase-community/supabase-kt) repository.
 
 ## ⚙️ Setup
 1. Get started with Spring Boot project with [Spring Initializr](https://start.spring.io/), select Kotlin and Java 17 (JVM)
