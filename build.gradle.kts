@@ -38,6 +38,7 @@ dependencies {
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.github.jan-tennert.supabase:storage-kt")
     implementation("io.github.jan-tennert.supabase:serializer-jackson:$supabaseVersion")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
 
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
