@@ -12,8 +12,8 @@ class BucketService(
         return bucketRepository.getBuckets()
     }
 
-    fun getBucketDetails(bucketId: String) {
-        bucketRepository.getBucketDetails(bucketId)
+    fun getBucketDetails(bucketId: String): BucketDto? {
+        return bucketRepository.getBucketDetails(bucketId)
     }
 
     fun createBucket(bucketId: String) {

@@ -3,6 +3,7 @@ package com.supa.spring.supaspring.repository
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.supa.spring.supaspring.controller.dto.BucketDto
 import io.github.jan.supabase.SupabaseClient
+import io.github.jan.supabase.exceptions.RestException
 import io.github.jan.supabase.storage.Storage
 import io.github.jan.supabase.storage.storage
 import kotlinx.coroutines.runBlocking
@@ -33,14 +34,27 @@ class BucketRepository(
         return result
     }
 
-    fun getBucketDetails(bucketId: String) {
+    fun getBucketDetails(bucketId: String): BucketDto? {
         val result = runBlocking {
-            storage.retrieveBucketById(bucketId)
+            val bucket = storage.retrieveBucketById(bucketId)
+            bucket?.run {
+                BucketDto(
+                    createdAt = createdAt,
+                    id = id,
+                    name = name,
+                    owner = owner,
+                    updatedAt = updatedAt,
+                    public = public,
+                    allowedMimeTypes = allowedMimeTypes,
+                    fileSizeLimit = fileSizeLimit
+                )
+            }
         }
+        return result
     }
 
     fun createBucket(bucketId: String) {
-        val result = runBlocking {
+        runBlocking {
             storage.createBucket(bucketId)
         }
     }

@@ -19,8 +19,12 @@ class BucketController(
     }
 
     @GetMapping("/{bucketId}")
-    fun getBucketDetails(@PathVariable bucketId: String) {
-        bucketService.getBucketDetails(bucketId)
+    fun getBucketDetails(@PathVariable bucketId: String): ResponseEntity<BucketDto> {
+        val result = bucketService.getBucketDetails(bucketId)
+        return if (result == null) ResponseEntity<BucketDto>(
+            null,
+            HttpStatusCode.valueOf(400)
+        ) else ResponseEntity<BucketDto>(result, HttpStatusCode.valueOf(200))
     }
 
     @PostMapping("/{bucketId}")
