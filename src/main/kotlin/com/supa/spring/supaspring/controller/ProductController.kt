@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.multipart.MultipartFile
 
 @RestController
 @RequestMapping("/products")
@@ -31,6 +32,14 @@ class ProductController(
     ): ResponseEntity<ProductDto> {
         val result = productService.createProduct(product)
         return ResponseEntity<ProductDto>(result, HttpStatusCode.valueOf(200))
+    }
+
+    @PostMapping("/image")
+    fun uploadImage(
+        @RequestBody product: MultipartFile
+    ): ResponseEntity<Unit> {
+        val result = productService.uploadFile(product)
+        return ResponseEntity<Unit>(result, HttpStatusCode.valueOf(200))
     }
 
     @PutMapping("/{id}")
