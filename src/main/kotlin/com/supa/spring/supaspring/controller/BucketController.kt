@@ -28,8 +28,9 @@ class BucketController(
     }
 
     @PostMapping("/{bucketId}")
-    fun createBucket(@PathVariable bucketId: String) {
+    fun createBucket(@PathVariable bucketId: String): ResponseEntity<Unit> {
         bucketService.createBucket(bucketId)
+        return ResponseEntity(Unit, HttpStatusCode.valueOf(200))
     }
 
     @PutMapping("/{bucketName}")
