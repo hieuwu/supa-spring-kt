@@ -71,4 +71,10 @@ class BucketRepository(
             storage.deleteBucket(bucketId)
         }
     }
+
+    fun emptyBucket(bucketId: String) {
+        runBlocking {
+            storage.emptyBucket(bucketId)
+        }
+    }
 }

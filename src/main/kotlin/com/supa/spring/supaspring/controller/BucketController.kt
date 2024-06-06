@@ -42,5 +42,8 @@ class BucketController(
     fun deleteBucket(@PathVariable bucketId: String) {
         bucketService.deleteBucket(bucketId)
     }
-
+    @PutMapping("/empty/{bucketName}")
+    fun emptyBucket(@PathVariable bucketId: String) {
+        bucketService.emptyBucket(bucketId)
+    }
 }

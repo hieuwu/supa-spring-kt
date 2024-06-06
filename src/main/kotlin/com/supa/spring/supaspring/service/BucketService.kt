@@ -27,4 +27,8 @@ class BucketService(
     fun deleteBucket(bucketId: String) {
         bucketRepository.deleteBucket(bucketId)
     }
+
+    fun emptyBucket(bucketId: String) {
+        bucketRepository.emptyBucket(bucketId)
+    }
 }
