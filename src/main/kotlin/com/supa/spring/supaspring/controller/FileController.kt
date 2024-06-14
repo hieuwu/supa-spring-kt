@@ -1,6 +1,5 @@
 package com.supa.spring.supaspring.controller
 
-import com.supa.spring.supaspring.controller.dto.BucketDto
 import com.supa.spring.supaspring.controller.dto.BucketItemDto
 import com.supa.spring.supaspring.service.FileService
 import org.springframework.http.HttpStatusCode
@@ -46,5 +45,4 @@ class FileController(val fileService: FileService) {
         fileService.replaceFileAtPath(path, file)
         return ResponseEntity(Unit, HttpStatusCode.valueOf(200))
     }
-
 }
