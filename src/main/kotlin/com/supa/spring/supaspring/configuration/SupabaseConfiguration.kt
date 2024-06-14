@@ -5,6 +5,7 @@ import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.Auth
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.serializer.JacksonSerializer
+import io.github.jan.supabase.storage.Storage
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -18,6 +19,7 @@ class SupabaseConfiguration {
         ) {
             install(Auth)
             install(Postgrest)
+            install(Storage)
             defaultSerializer = JacksonSerializer()
         }
     }

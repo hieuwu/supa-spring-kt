@@ -4,13 +4,17 @@ import com.supa.spring.supaspring.controller.dto.ProductDto
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.postgrest
+import io.github.jan.supabase.storage.Storage
+import io.github.jan.supabase.storage.storage
 import kotlinx.coroutines.runBlocking
 import org.springframework.stereotype.Repository
+import org.springframework.web.multipart.MultipartFile
 
 @Repository
 class ProductRepository(supabase: SupabaseClient) {
 
     val postgrest: Postgrest = supabase.postgrest
+    val storage: Storage = supabase.storage
 
     fun getProducts(): List<ProductDto> {
         val result: List<ProductDto> = runBlocking {
@@ -26,6 +30,16 @@ class ProductRepository(supabase: SupabaseClient) {
             }
         }
         return result.decodeSingle()
+    }
+
+    fun uploadFile(image: MultipartFile) {
+        runBlocking {
+            storage.from("images").upload(
+                path = image.originalFilename?.replace(" ", "_") ?: "noname",
+                data = image.bytes,
+                upsert = false,
+            )
+        }
     }
 
     fun updateProduct(id: String, name: String, price: Long): ProductDto {
