@@ -1,4 +1,4 @@
-package com.supa.spring.supaspring.repository
+package com.supa.spring.supaspring.bucket.domain
 
 import com.supa.spring.supaspring.controller.dto.BucketDto
 import io.github.jan.supabase.SupabaseClient
@@ -8,12 +8,12 @@ import kotlinx.coroutines.runBlocking
 import org.springframework.stereotype.Repository
 
 @Repository
-class BucketRepository(
+class BucketRepositoryImpl(
     supabase: SupabaseClient
-) {
+): BucketRepository {
     val storage: Storage = supabase.storage
 
-    fun getBuckets(): List<BucketDto> {
+    override fun getBuckets(): List<BucketDto> {
         val result = runBlocking {
             storage.retrieveBuckets().map {
                 BucketDto(
@@ -31,7 +31,7 @@ class BucketRepository(
         return result
     }
 
-    fun getBucketDetails(bucketId: String): BucketDto? {
+    override fun getBucketDetails(bucketId: String): BucketDto? {
         val result = runBlocking {
             val bucket = storage.retrieveBucketById(bucketId)
             bucket?.run {
@@ -50,26 +50,26 @@ class BucketRepository(
         return result
     }
 
-    fun createBucket(bucketId: String) {
+    override fun createBucket(bucketId: String) {
         runBlocking {
             storage.createBucket(bucketId)
         }
     }
 
-    fun updateBucket(bucketId: String) {
+    override fun updateBucket(bucketId: String) {
         val result = runBlocking {
             storage.updateBucket(bucketId) {
             }
         }
     }
 
-    fun deleteBucket(bucketId: String) {
+    override fun deleteBucket(bucketId: String) {
         val result = runBlocking {
             storage.deleteBucket(bucketId)
         }
     }
 
-    fun emptyBucket(bucketId: String) {
+    override fun emptyBucket(bucketId: String) {
         runBlocking {
             storage.emptyBucket(bucketId)
         }

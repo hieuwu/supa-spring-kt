@@ -1,34 +1,34 @@
 package com.supa.spring.supaspring.service
 
 import com.supa.spring.supaspring.controller.dto.BucketDto
-import com.supa.spring.supaspring.repository.BucketRepository
+import com.supa.spring.supaspring.bucket.domain.BucketRepository
 import org.springframework.stereotype.Service
 
 @Service
 class BucketService(
-    val bucketRepository: BucketRepository
+    val bucketRepositoryImpl: BucketRepository
 ) {
     fun getBuckets(): List<BucketDto> {
-        return bucketRepository.getBuckets()
+        return bucketRepositoryImpl.getBuckets()
     }
 
     fun getBucketDetails(bucketId: String): BucketDto? {
-        return bucketRepository.getBucketDetails(bucketId)
+        return bucketRepositoryImpl.getBucketDetails(bucketId)
     }
 
     fun createBucket(bucketId: String) {
-        bucketRepository.createBucket(bucketId)
+        bucketRepositoryImpl.createBucket(bucketId)
     }
 
     fun updateBucket(bucketId: String) {
-        bucketRepository.updateBucket(bucketId)
+        bucketRepositoryImpl.updateBucket(bucketId)
     }
 
     fun deleteBucket(bucketId: String) {
-        bucketRepository.deleteBucket(bucketId)
+        bucketRepositoryImpl.deleteBucket(bucketId)
     }
 
     fun emptyBucket(bucketId: String) {
-        bucketRepository.emptyBucket(bucketId)
+        bucketRepositoryImpl.emptyBucket(bucketId)
     }
 }
