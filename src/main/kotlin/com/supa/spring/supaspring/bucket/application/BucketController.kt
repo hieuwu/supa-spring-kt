@@ -1,4 +1,4 @@
-package com.supa.spring.supaspring.controller
+package com.supa.spring.supaspring.bucket.application
 
 import com.supa.spring.supaspring.controller.dto.BucketDto
 import com.supa.spring.supaspring.service.BucketService
