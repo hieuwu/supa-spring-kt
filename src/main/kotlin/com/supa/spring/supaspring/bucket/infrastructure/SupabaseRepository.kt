@@ -9,7 +9,7 @@ import kotlinx.coroutines.runBlocking
 import org.springframework.stereotype.Repository
 
 @Repository
-class BucketRepositoryImpl(
+class SupabaseRepository(
     supabase: SupabaseClient
 ): BucketRepository {
     val storage: Storage = supabase.storage
