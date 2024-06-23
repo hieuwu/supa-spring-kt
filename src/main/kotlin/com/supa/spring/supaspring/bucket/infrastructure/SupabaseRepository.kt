@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class SupabaseRepository(
     supabase: SupabaseClient
-): BucketRepository {
+) : BucketRepository {
     val storage: Storage = supabase.storage
 
     override fun getBuckets(): List<BucketDto> {
@@ -58,14 +58,14 @@ class SupabaseRepository(
     }
 
     override fun updateBucket(bucketId: String) {
-        val result = runBlocking {
+        runBlocking {
             storage.updateBucket(bucketId) {
             }
         }
     }
 
     override fun deleteBucket(bucketId: String) {
-        val result = runBlocking {
+        runBlocking {
             storage.deleteBucket(bucketId)
         }
     }

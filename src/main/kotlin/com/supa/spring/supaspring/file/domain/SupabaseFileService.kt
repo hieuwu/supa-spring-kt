@@ -12,14 +12,15 @@ class SupabaseFileService(val supabaseFileRepository: SupabaseFileRepository) : 
     }
 
     override fun moveFile(from: String, to: String) {
-
+        supabaseFileRepository.moveFile(from, to)
     }
 
     override fun uploadFile(bucketId: String, file: MultipartFile) {
+        supabaseFileRepository.uploadFile(bucketId, file)
 
     }
 
     override fun replaceFileAtPath(path: String, file: MultipartFile) {
-
+        supabaseFileRepository.replaceFileAtPath(path, file)
     }
 }

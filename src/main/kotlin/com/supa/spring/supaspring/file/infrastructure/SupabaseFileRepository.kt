@@ -7,11 +7,12 @@ import io.github.jan.supabase.storage.Storage
 import io.github.jan.supabase.storage.storage
 import kotlinx.coroutines.runBlocking
 import org.springframework.stereotype.Repository
+import org.springframework.web.multipart.MultipartFile
 
 @Repository
 class SupabaseFileRepository(
     supabase: SupabaseClient
-): FileRepository {
+) : FileRepository {
     val storage: Storage = supabase.storage
 
     override fun getFilesInBucket(bucketId: String): List<BucketItemDto> {
@@ -28,5 +29,23 @@ class SupabaseFileRepository(
             }
         }
         return result
+    }
+
+    override fun moveFile(from: String, to: String) {
+        runBlocking {
+            storage.from("bucketId").move(from, to)
+        }
+    }
+
+    override fun uploadFile(bucketId: String, file: MultipartFile) {
+        runBlocking {
+            storage.from("uploadFile").upload("", file.bytes)
+        }
+    }
+
+    override fun replaceFileAtPath(path: String, file: MultipartFile) {
+        runBlocking {
+            storage.from("bucketId").update("myIcon.png", file.bytes, upsert = false)
+        }
     }
 }
