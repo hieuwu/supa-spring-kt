@@ -1,4 +1,4 @@
-package com.supa.spring.supaspring.configuration
+package com.supa.spring.supaspring
 
 import io.swagger.v3.oas.models.OpenAPI
 import io.swagger.v3.oas.models.info.Contact

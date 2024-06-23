@@ -1,4 +1,4 @@
-package com.supa.spring.supaspring.controller.dto
+package com.supa.spring.supaspring.bucket.application
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import kotlinx.datetime.Instant

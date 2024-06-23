@@ -1,7 +1,6 @@
-package com.supa.spring.supaspring.controller
+package com.supa.spring.supaspring.file.application
 
-import com.supa.spring.supaspring.controller.dto.BucketItemDto
-import com.supa.spring.supaspring.service.FileService
+import com.supa.spring.supaspring.file.domain.SupabaseFileService
 import org.springframework.http.HttpStatusCode
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -9,13 +8,13 @@ import org.springframework.web.multipart.MultipartFile
 
 @RestController
 @RequestMapping("/files")
-class FileController(val fileService: FileService) {
+class FileController(val supabaseFileService: SupabaseFileService) {
 
     @GetMapping("/{bucketId}")
     fun getFiles(
         @PathVariable bucketId: String
     ): ResponseEntity<List<BucketItemDto>> {
-        val result = fileService.getFilesInBucket(bucketId)
+        val result = supabaseFileService.getFilesInBucket(bucketId)
         return ResponseEntity<List<BucketItemDto>>(result, HttpStatusCode.valueOf(200))
     }
 
@@ -24,7 +23,7 @@ class FileController(val fileService: FileService) {
         @RequestBody from: String,
         @RequestBody to: String
     ): ResponseEntity<Unit> {
-        fileService.moveFile(from, to)
+        supabaseFileService.moveFile(from, to)
         return ResponseEntity(Unit, HttpStatusCode.valueOf(200))
     }
 
@@ -33,7 +32,7 @@ class FileController(val fileService: FileService) {
         @PathVariable bucketId: String,
         @RequestBody file: MultipartFile
     ): ResponseEntity<Unit> {
-        fileService.uploadFile(bucketId, file)
+        supabaseFileService.uploadFile(bucketId, file)
         return ResponseEntity(Unit, HttpStatusCode.valueOf(200))
     }
 
@@ -42,7 +41,7 @@ class FileController(val fileService: FileService) {
         @PathVariable path: String,
         @RequestBody file: MultipartFile
     ): ResponseEntity<Unit> {
-        fileService.replaceFileAtPath(path, file)
+        supabaseFileService.replaceFileAtPath(path, file)
         return ResponseEntity(Unit, HttpStatusCode.valueOf(200))
     }
 }

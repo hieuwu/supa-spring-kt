@@ -1,6 +1,7 @@
-package com.supa.spring.supaspring.repository
+package com.supa.spring.supaspring.bucket.infrastructure
 
-import com.supa.spring.supaspring.controller.dto.BucketDto
+import com.supa.spring.supaspring.bucket.application.BucketDto
+import com.supa.spring.supaspring.bucket.domain.BucketRepository
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.storage.Storage
 import io.github.jan.supabase.storage.storage
@@ -8,12 +9,12 @@ import kotlinx.coroutines.runBlocking
 import org.springframework.stereotype.Repository
 
 @Repository
-class BucketRepository(
+class SupabaseRepository(
     supabase: SupabaseClient
-) {
+) : BucketRepository {
     val storage: Storage = supabase.storage
 
-    fun getBuckets(): List<BucketDto> {
+    override fun getBuckets(): List<BucketDto> {
         val result = runBlocking {
             storage.retrieveBuckets().map {
                 BucketDto(
@@ -31,7 +32,7 @@ class BucketRepository(
         return result
     }
 
-    fun getBucketDetails(bucketId: String): BucketDto? {
+    override fun getBucketDetails(bucketId: String): BucketDto? {
         val result = runBlocking {
             val bucket = storage.retrieveBucketById(bucketId)
             bucket?.run {
@@ -50,26 +51,26 @@ class BucketRepository(
         return result
     }
 
-    fun createBucket(bucketId: String) {
+    override fun createBucket(bucketId: String) {
         runBlocking {
             storage.createBucket(bucketId)
         }
     }
 
-    fun updateBucket(bucketId: String) {
-        val result = runBlocking {
+    override fun updateBucket(bucketId: String) {
+        runBlocking {
             storage.updateBucket(bucketId) {
             }
         }
     }
 
-    fun deleteBucket(bucketId: String) {
-        val result = runBlocking {
+    override fun deleteBucket(bucketId: String) {
+        runBlocking {
             storage.deleteBucket(bucketId)
         }
     }
 
-    fun emptyBucket(bucketId: String) {
+    override fun emptyBucket(bucketId: String) {
         runBlocking {
             storage.emptyBucket(bucketId)
         }
