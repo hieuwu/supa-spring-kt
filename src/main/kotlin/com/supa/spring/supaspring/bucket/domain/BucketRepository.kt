@@ -1,6 +1,6 @@
 package com.supa.spring.supaspring.bucket.domain
 
-import com.supa.spring.supaspring.controller.dto.BucketDto
+import com.supa.spring.supaspring.bucket.application.BucketDto
 
 interface BucketRepository {
     fun getBuckets(): List<BucketDto>
