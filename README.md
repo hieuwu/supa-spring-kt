@@ -67,3 +67,18 @@ class ProductRepository(supabase: SupabaseClient) {
 **Service status:** `http://localhost:8080/actuator/health`
 
 **Swagger API:** `http://localhost:8080/swagger-ui/index.html`
+
+### With Docker
+1. Run below command to build the image
+```bash
+ ./gradlew build && java -jar build/libs/gs-spring-boot-docker-0.1.0.jar
+```
+
+```bash
+docker build --build-arg JAR_FILE=build/libs/\*.jar -t springio/gs-spring-boot-docker .
+```
+2. Run the image
+```bash
+docker-compose up
+```
+
