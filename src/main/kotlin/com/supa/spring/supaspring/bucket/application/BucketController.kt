@@ -1,7 +1,6 @@
 package com.supa.spring.supaspring.bucket.application
 
-import com.supa.spring.supaspring.controller.dto.BucketDto
-import com.supa.spring.supaspring.service.BucketService
+import com.supa.spring.supaspring.bucket.domain.BucketService
 import org.springframework.http.HttpStatusCode
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -42,6 +41,7 @@ class BucketController(
     fun deleteBucket(@PathVariable bucketId: String) {
         bucketService.deleteBucket(bucketId)
     }
+
     @PutMapping("/empty/{bucketName}")
     fun emptyBucket(@PathVariable bucketId: String) {
         bucketService.emptyBucket(bucketId)
