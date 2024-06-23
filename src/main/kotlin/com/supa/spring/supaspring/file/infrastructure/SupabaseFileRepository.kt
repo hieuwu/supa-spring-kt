@@ -1,6 +1,7 @@
-package com.supa.spring.supaspring.repository
+package com.supa.spring.supaspring.file.infrastructure
 
-import com.supa.spring.supaspring.controller.dto.BucketItemDto
+import com.supa.spring.supaspring.file.application.BucketItemDto
+import com.supa.spring.supaspring.file.domain.FileRepository
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.storage.Storage
 import io.github.jan.supabase.storage.storage
@@ -8,12 +9,12 @@ import kotlinx.coroutines.runBlocking
 import org.springframework.stereotype.Repository
 
 @Repository
-class FileRepository(
+class SupabaseFileRepository(
     supabase: SupabaseClient
-) {
+): FileRepository {
     val storage: Storage = supabase.storage
 
-    fun getFilesInBucket(bucketId: String): List<BucketItemDto> {
+    override fun getFilesInBucket(bucketId: String): List<BucketItemDto> {
         val result = runBlocking {
             storage.from(bucketId).list().map {
                 BucketItemDto(
