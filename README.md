@@ -54,9 +54,9 @@ class ProductRepository(supabase: SupabaseClient) {
 }
 ```
 
-## 📒 Swagger API & Supabase schema
+## 📒 API docs & Supabase schema
 ### API Docs
-<img width="720" alt="Screenshot 2024-06-04 at 22 13 20" src="https://github.com/hieuwu/supa-spring-kt/assets/43868345/9adb1934-a467-46d5-b5cf-9d70eff76ce3">
+<img width="750" alt="Screenshot 2024-06-23 at 19 29 54" src="https://github.com/hieuwu/supa-spring-kt/assets/43868345/8086c8bf-65e7-4390-a685-24d8a92777fb">
 
 ### Schema
 <img width="320" alt="Screenshot 2024-06-04 at 23 16 08" src="https://github.com/hieuwu/supa-spring-kt/assets/43868345/bdfbdd05-705d-4dc1-ac2d-0ba3e845d7af">
