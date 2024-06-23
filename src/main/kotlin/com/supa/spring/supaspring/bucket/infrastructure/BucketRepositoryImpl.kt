@@ -1,6 +1,7 @@
-package com.supa.spring.supaspring.bucket.domain
+package com.supa.spring.supaspring.bucket.infrastructure
 
-import com.supa.spring.supaspring.controller.dto.BucketDto
+import com.supa.spring.supaspring.bucket.application.BucketDto
+import com.supa.spring.supaspring.bucket.domain.BucketRepository
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.storage.Storage
 import io.github.jan.supabase.storage.storage
