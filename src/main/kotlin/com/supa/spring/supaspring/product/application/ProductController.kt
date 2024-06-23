@@ -1,7 +1,7 @@
-package com.supa.spring.supaspring.controller
+package com.supa.spring.supaspring.product.application
 
-import com.supa.spring.supaspring.controller.dto.ProductDto
-import com.supa.spring.supaspring.service.ProductService
+import com.supa.spring.supaspring.product.application.dto.ProductDto
+import com.supa.spring.supaspring.product.domain.ProductService
 import org.springframework.http.HttpStatusCode
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping

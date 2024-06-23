@@ -1,4 +1,4 @@
-package com.supa.spring.supaspring.controller.dto
+package com.supa.spring.supaspring.product.application.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import java.util.UUID

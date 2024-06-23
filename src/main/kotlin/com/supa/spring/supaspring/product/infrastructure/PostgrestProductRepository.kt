@@ -1,6 +1,7 @@
-package com.supa.spring.supaspring.repository
+package com.supa.spring.supaspring.product.infrastructure
 
-import com.supa.spring.supaspring.controller.dto.ProductDto
+import com.supa.spring.supaspring.product.application.dto.ProductDto
+import com.supa.spring.supaspring.product.domain.PostgresProductRepository
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.postgrest
@@ -11,19 +12,19 @@ import org.springframework.stereotype.Repository
 import org.springframework.web.multipart.MultipartFile
 
 @Repository
-class ProductRepository(supabase: SupabaseClient) {
+class PostgrestProductRepository(supabase: SupabaseClient): PostgresProductRepository {
 
     val postgrest: Postgrest = supabase.postgrest
     val storage: Storage = supabase.storage
 
-    fun getProducts(): List<ProductDto> {
+    override fun getProducts(): List<ProductDto> {
         val result: List<ProductDto> = runBlocking {
             postgrest["products"].select().decodeList<ProductDto>()
         }
         return result
     }
 
-    fun createProduct(product: ProductDto): ProductDto {
+    override fun createProduct(product: ProductDto): ProductDto {
         val result = runBlocking {
             postgrest["products"].insert(product) {
                 select()
@@ -32,7 +33,7 @@ class ProductRepository(supabase: SupabaseClient) {
         return result.decodeSingle()
     }
 
-    fun uploadFile(image: MultipartFile) {
+    override fun uploadFile(image: MultipartFile) {
         runBlocking {
             storage.from("images").upload(
                 path = image.originalFilename?.replace(" ", "_") ?: "noname",
@@ -42,7 +43,7 @@ class ProductRepository(supabase: SupabaseClient) {
         }
     }
 
-    fun updateProduct(id: String, name: String, price: Long): ProductDto {
+    override fun updateProduct(id: String, name: String, price: Long): ProductDto {
         val result = runBlocking {
             postgrest["products"].update({
                 set("name", name)
@@ -57,7 +58,7 @@ class ProductRepository(supabase: SupabaseClient) {
         return result.decodeSingle()
     }
 
-    fun deleteProduct(id: String): Boolean {
+    override fun deleteProduct(id: String): Boolean {
         runBlocking {
             postgrest["products"].delete {
                 filter {
