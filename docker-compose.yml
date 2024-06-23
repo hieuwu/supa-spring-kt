@@ -1,0 +1,5 @@
+services:
+  webapp:
+    image: springio/gs-spring-boot-docker
+    ports:
+      - 8080:8080
