@@ -1,4 +1,4 @@
-package com.supa.spring.supaspring.configuration
+package com.supa.spring.supaspring
 
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
