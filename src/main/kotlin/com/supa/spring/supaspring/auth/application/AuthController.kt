@@ -13,13 +13,17 @@ import org.springframework.web.bind.annotation.RestController
 class AuthController(private val authService: AuthService) {
     @PostMapping("/signup")
     fun signUp(
-        @RequestBody signUpRequestDto: SignUpRequestDto
+        @RequestBody authRequestDto: AuthRequestDto
     ): ResponseEntity<Unit> {
-        authService.signUp(signUpRequestDto.email, signUpRequestDto.password)
+        authService.signUp(authRequestDto.email, authRequestDto.password)
         return ResponseEntity<Unit>(HttpStatus.OK)
     }
 
     @PostMapping("/signin")
-    fun signIn() {
+    fun signIn(
+        @RequestBody authRequestDto: AuthRequestDto
+    ): ResponseEntity<Unit> {
+        authService.signIn(authRequestDto.email, authRequestDto.password)
+        return ResponseEntity<Unit>(HttpStatus.OK)
     }
 }
