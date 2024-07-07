@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 class AuthController {
     @PostMapping("/signup")
     fun signUp(
-        @RequestBody  signUpRequest: SignUpRequest
+        @RequestBody  signUpRequestDto: SignUpRequestDto
     ) {
 
     }
