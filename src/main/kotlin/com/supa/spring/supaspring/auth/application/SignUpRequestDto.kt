@@ -1,5 +1,3 @@
 package com.supa.spring.supaspring.auth.application
 
-class SignUpRequestDto {
-
-}
+data class SignUpRequestDto(val email: String, val password: String)
