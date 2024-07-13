@@ -1,7 +1,5 @@
 # supa-spring-kt
 
- [![In-progress](https://img.shields.io/badge/In-progress-%23FFac45.svg?&style=for-the-badge&logo=java&logoColor=white&color=yellow)](https://github.com/)
-
 Spring Boot backend with RESTful APIs, session management via Supabase
 <img width="720" alt="Screenshot 2024-06-05 at 00 07 52" src="https://github.com/hieuwu/supa-spring-kt/assets/43868345/8c60932e-dcf2-4994-bae9-85cb60079958">
 
